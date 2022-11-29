@@ -1,6 +1,4 @@
 import os
-
-
 import discord
 from discord.ext import commands
 import requests
@@ -22,16 +20,17 @@ async def on_connect():
 @bot.command(brief="play tic tac toe using an API!")
 async def TTT(ctx,state,player):
   
-
+  
+  
   url = "https://stujo-tic-tac-toe-stujo-v1.p.rapidapi.com/"+state+"/"+player
-
+  my_secretAPI = os.environ['TTT']
   headers = {
-  	"X-RapidAPI-Key": "c076970653mshf55839d326b1e54p197082jsn2134344cf5de",
+  	"X-RapidAPI-Key": my_secretAPI,
   	"X-RapidAPI-Host": "stujo-tic-tac-toe-stujo-v1.p.rapidapi.com"
   }
   
   response = requests.request("GET", url, headers=headers)
-  response = response["recommendation"]
+  
   await ctx.send(response.text)
 
 
